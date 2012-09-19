@@ -52,7 +52,7 @@ endfunction
 function! s:prefix_for_test(file)
   if a:file =~# '_spec.rb$'
     return g:turbux_command_rspec
-  elseif a:file =~# '\(\<test_.*\|_test\)\.rb$'
+  elseif a:file =~# '\(\<test_.*\|\<tc_.*\|_test\)\.rb$'
     return g:turbux_command_test_unit
   elseif a:file =~# '.feature$'
     if a:file =~# '\<spec/'
@@ -68,7 +68,7 @@ function! s:alternate_for_file(file)
   let related_file = ""
   if exists('g:autoloaded_rails')
     let alt = s:first_readable_file(rails#buffer().related())
-    if alt =~# '\(\<test_.*\|\(_test\|_spec\)\)\.rb$'
+    if alt =~# '\(\<\(test_\|tc_\).*\|\(_test\|_spec\)\)\.rb$'
       let related_file = alt
     endif
   endif
